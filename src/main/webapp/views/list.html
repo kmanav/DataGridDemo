@@ -1,54 +1,57 @@
 <div class="row">
-   <div class="col-xs-6 col-md-4">
-   <div class="panel panel-default">
-            <div class="panel-heading">
-                <td class="panel-title">
-                Node 1:
-                </td>
-                <td>
-                <input autofocus="autofocus" type="text" class="form-control" id="title" placeholder="http://localhost:8180" ng-model="urinode1" ng-init="urinode1='http://localhost:8180'">                
-                </td>
-            </div>
-            <div class="panel-body">
-               <td>
-                  <b>Entries: {{node1Rdo.value.numberOfEntries}}</b> Stores: {{node1Rdo.value.stores}} Evictions: {{node1Rdo.value.evictions}} Hits: {{node1Rdo.value.hits}}  
-              </td>             
-            
-         </div>
-    </div>
-   </div>
+  <form name="nodes">
    <div class="col-xs-6 col-md-4">
      <div class="panel panel-default">
-            <div class="panel-heading">
-                <td>
-                <h4 class="panel-title">Node 2:</h4>
-                </td>
-                <td>
-                <input autofocus="autofocus" type="text" class="form-control" id="title2" placeholder="http://localhost:8580" ng-model="urinode2" ng-init="urinode2='http://localhost:8580'">
-                </td>
-            </div>
-            <div class="panel-body">
-                <td>
-                  <b>Entries: {{node2Rdo.value.numberOfEntries}}</b> Stores: {{node2Rdo.value.stores}} Evictions: {{node2Rdo.value.evictions}} Hits: {{node2Rdo.value.hits}}
-                </td>              
-            </div>
+         <div class="panel-heading" >
+                <div class="panel-title">
+                  <div class="form-group" ng-class="{'has-error' : nodes.urinode1.$invalid}">
+                    <label>Node 1: </label>
+                    <span class="glyphicon" ng-class="{'glyphicon glyphicon-ok' : node1Rdo.value.numberOfEntries != null, 'glyphicon glyphicon-remove' : node1Rdo.value.numberOfEntries == null }"> </span>			  			             
+                    <input autofocus="autofocus" type="text" name="urinode1" class="form-control" id="title" placeholder="http://localhost:8180" ng-model="urinode1" ng-init="urinode1='http://localhost:8180'" required ng-minlength="2" ng-maxlength="40" >
+                    <p class="help-block" ng-show="urinode1.$error.minlength">Name must be at least 2 characters long.</p>                  
+  				 </div>	
+                </div>
+         </div>
+         <div class="panel-body" ng-if="node1Rdo.value.numberOfEntries != null">                                                      	  		                 		
+                  <b>Entries: {{node1Rdo.value.numberOfEntries}}</b> Stores: {{node1Rdo.value.stores}} Evictions: {{node1Rdo.value.evictions}} Hits: {{node1Rdo.value.hits}}                                 
+         </div>       
       </div>
-    </div>   
-   <div class="col-xs-6 col-md-4">
-   <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">Node 3</h4>
-                <td>
-                <input autofocus="autofocus" type="text" class="form-control" id="title3" placeholder="http://localhost:8980" ng-model="urinode3" ng-init="urinode3='http://localhost:8980'">
-                </td>                
-            </div>
-            <div class="panel-body">
-              <td><b>Entries: {{node3Rdo.value.numberOfEntries}}</b> Stores: {{node3Rdo.value.stores}} Evictions: {{node3Rdo.value.evictions}} Hits: {{node3Rdo.value.hits}}
-               </td>
-            </div>
-        </div>
-     </div>
    </div>
+   <div class="col-xs-6 col-md-4">
+    <div class="panel panel-default">
+         <div class="panel-heading" >
+                <div class="panel-title">
+                  <div class="form-group" ng-class="{'has-error' : nodes.urinode2.$invalid}">
+                    <label>Node 2: </label>
+                    <span class="glyphicon" ng-class="{'glyphicon glyphicon-ok' : node2Rdo.value.numberOfEntries != null, 'glyphicon glyphicon-remove' : node2Rdo.value.numberOfEntries == null }"> </span>			  			             
+                    <input autofocus="autofocus" type="text" name="urinode2" class="form-control" id="title" placeholder="http://localhost:8580" ng-model="urinode2" ng-init="urinode2='http://localhost:8580'" required ng-minlength="2" ng-maxlength="40" >
+                    <p class="help-block" ng-show="urinode2.$error.minlength">Name must be at least 2 characters long.</p>                  
+  				 </div>	
+                </div>
+        </div>
+        <div class="panel-body" ng-if="node2Rdo.value.numberOfEntries != null">                                                      	  		                 		
+                  <b>Entries: {{node2Rdo.value.numberOfEntries}}</b> Stores: {{node2Rdo.value.stores}} Evictions: {{node2Rdo.value.evictions}} Hits: {{node2Rdo.value.hits}}                                 
+        </div>
+      </div>
+    </div>    
+   <div class="col-xs-6 col-md-4">
+    <div class="panel panel-default">
+         <div class="panel-heading" >
+                <div class="panel-title">
+                  <div class="form-group" ng-class="{'has-error' : nodes.urinode3.$invalid}">
+                    <label>Node 3: </label>
+                    <span class="glyphicon" ng-class="{'glyphicon glyphicon-ok' : node3Rdo.value.numberOfEntries != null, 'glyphicon glyphicon-remove' : node3Rdo.value.numberOfEntries == null }"> </span>			  			             
+                    <input autofocus="autofocus" type="text" name="urinode3" class="form-control" id="title" placeholder="http://localhost:8980" ng-model="urinode3" ng-init="urinode3='http://localhost:8980'" required ng-minlength="2" ng-maxlength="40" >
+                    <p class="help-block" ng-show="urinode3.$error.minlength">Name must be at least 2 characters long.</p>                  
+  				 </div>	
+                </div>
+         </div>
+         <div class="panel-body" ng-if="node3Rdo.value.numberOfEntries != null">                                                      	  		                 		
+                  <b>Entries: {{node3Rdo.value.numberOfEntries}}</b> Stores: {{node3Rdo.value.stores}} Evictions: {{node3Rdo.value.evictions}} Hits: {{node3Rdo.value.hits}}                                 
+         </div>
+       </div>
+    </div>   
+  </form>
 </div>
 <h2>CRUD of Tasks 
    <a class="btn btn-primary pull-right" href="#/create">New</a>
