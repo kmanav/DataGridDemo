@@ -42,9 +42,7 @@ public class SearchEndpoint
    {
 	   
 	   System.out.println("Searching");
-	   /*
-	  
-	      */
+
       return Response.noContent().build();
    }
    

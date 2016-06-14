@@ -13,7 +13,7 @@ import java.util.List;
 
 		   @Override
 		   public String getTypeName() {
-		      return "remotequery.Task";
+		      return "Task";
 		   }
 
 		   @Override
@@ -24,16 +24,21 @@ import java.util.List;
 		   public Task readFrom(ProtoStreamReader reader) throws IOException {
 		      String title = reader.readString("title");
 		      long id = reader.readLong("id");
+		      
+		      //ToDO :fix these datatypes in protobuf
 		      Date completed = reader.readDate("completedOn");
 		      Date created = reader.readDate("createdOn");
 		      Boolean done = reader.readBoolean("done");
 
+		      
 		      Task task = new Task();
 		      task.setTitle(title);
 		      task.setId(id);
+		      
 		      task.setCreatedOn(created);
 		      task.setCompletedOn(completed);
 		      task.setDone(done);
+		      
 		      return task;
 		   }
 
@@ -41,6 +46,7 @@ import java.util.List;
 		   public void writeTo(ProtoStreamWriter writer, Task task) throws IOException {
 		      writer.writeString("title", task.getTitle());
 		      writer.writeLong("id", task.getId());
+		      
 		      writer.writeDate("completedOn", task.getCompletedOn());
 		      writer.writeDate("createdOn", task.getCreatedOn());
 		      writer.writeBoolean("done", task.isDone());

@@ -35,7 +35,7 @@ public class TaskEndpoint
    public Response create(Task task)
    {
       taskService.insert(task);
-      System.out.println("Creada Task id="+task.getId().toString());
+      System.out.println("Creada Task id="+task.getId());
       return Response.created(UriBuilder.fromResource(TaskEndpoint.class).path(String.valueOf(task.getId())).build()).build();
    }
 

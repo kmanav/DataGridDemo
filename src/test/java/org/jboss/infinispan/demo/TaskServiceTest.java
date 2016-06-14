@@ -71,7 +71,7 @@ public class TaskServiceTest {
 		
 		Task task = new Task();
 		task.setTitle("This is a test task");
-		task.setCreatedOn(new Date());
+		//task.setCreatedOn(new Date());
 		taskservice.insert(task);
 		Collection<Task> tasks = taskservice.findAll();
 		Assert.assertEquals(currentSize+1, tasks.size());		
@@ -90,7 +90,7 @@ public class TaskServiceTest {
 		// Insert a task
 		Task task = new Task();
 		task.setTitle("THIS IS A TEST TASK QWERTY!123456");
-		task.setCreatedOn(new Date());
+		//task.setCreatedOn(new Date());
 		taskservice.insert(task);
 
 		//Collect the tasks
@@ -98,8 +98,8 @@ public class TaskServiceTest {
 		Assert.assertEquals(currentSize+1,tasks.size());
 		for (Task listTask : tasks) {
 			if("THIS IS A TEST TASK QWERTY!123456".equals(listTask.getTitle())) {
-				listTask.setDone(true);
-				listTask.setCompletedOn(new Date());
+			//	listTask.setDone(true);
+			//	listTask.setCompletedOn(new Date());
 				taskservice.update(listTask);
 			}
 		}
@@ -111,8 +111,8 @@ public class TaskServiceTest {
 		//Make sure that the task has been updated
 		for (Task listTask : tasks) {
 			if("THIS IS A TEST TASK QWERTY!123456".equals(listTask.getTitle())) {
-				Assert.assertNotNull(listTask.getCompletedOn());
-				Assert.assertEquals(true,listTask.isDone());
+				//Assert.assertNotNull(listTask.getCompletedOn());
+				//Assert.assertEquals(true,listTask.isDone());
 				
 				// Clean up
 				taskservice.delete(listTask);
@@ -131,7 +131,7 @@ public class TaskServiceTest {
 		for (int i = 0; i < 500; i++) {
 			Task task = new Task();
 			task.setTitle("This is the " + i + " test task");
-			task.setCreatedOn(new Date());
+			//task.setCreatedOn(new Date());
 			taskservice.insert(task);
 		}
 		

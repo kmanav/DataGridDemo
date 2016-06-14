@@ -1,69 +1,21 @@
-<div class="row">
-  <form name="nodes">
-   <div class="col-xs-6 col-md-4">
-     <div class="panel panel-default">
-         <div class="panel-heading" >
-                <div class="panel-title">
-                  <div class="form-group" ng-class="{'has-error' : nodes.urinode1.$invalid}">
-                    <label>Node 1: </label>
-                    <span class="glyphicon" ng-class="{'glyphicon glyphicon-ok' : node1Rdo.value.numberOfEntries != null, 'glyphicon glyphicon-remove' : node1Rdo.value.numberOfEntries == null }"> </span>			  			             
-                    <input autofocus="autofocus" type="text" name="urinode1" class="form-control" id="title" placeholder="http://localhost:8180" ng-model="urinode1" ng-init="urinode1='http://localhost:8180'" required ng-minlength="2" ng-maxlength="40" >
-                    <p class="help-block" ng-show="urinode1.$error.minlength">Name must be at least 2 characters long.</p>                  
-  				 </div>	
-                </div>
-         </div>
-         <div class="panel-body" ng-if="node1Rdo.value.numberOfEntries != null">                                                      	  		                 		
-                  <b>Entries: {{node1Rdo.value.numberOfEntries}}</b> Stores: {{node1Rdo.value.stores}} Evictions: {{node1Rdo.value.evictions}} Hits: {{node1Rdo.value.hits}}                                 
-         </div>       
-      </div>
-   </div>
-   <div class="col-xs-6 col-md-4">
-    <div class="panel panel-default">
-         <div class="panel-heading" >
-                <div class="panel-title">
-                  <div class="form-group" ng-class="{'has-error' : nodes.urinode2.$invalid}">
-                    <label>Node 2: </label>
-                    <span class="glyphicon" ng-class="{'glyphicon glyphicon-ok' : node2Rdo.value.numberOfEntries != null, 'glyphicon glyphicon-remove' : node2Rdo.value.numberOfEntries == null }"> </span>			  			             
-                    <input autofocus="autofocus" type="text" name="urinode2" class="form-control" id="title" placeholder="http://localhost:8580" ng-model="urinode2" ng-init="urinode2='http://localhost:8580'" required ng-minlength="2" ng-maxlength="40" >
-                    <p class="help-block" ng-show="urinode2.$error.minlength">Name must be at least 2 characters long.</p>                  
-  				 </div>	
-                </div>
-        </div>
-        <div class="panel-body" ng-if="node2Rdo.value.numberOfEntries != null">                                                      	  		                 		
-                  <b>Entries: {{node2Rdo.value.numberOfEntries}}</b> Stores: {{node2Rdo.value.stores}} Evictions: {{node2Rdo.value.evictions}} Hits: {{node2Rdo.value.hits}}                                 
-        </div>
-      </div>
-    </div>    
-   <div class="col-xs-6 col-md-4">
-    <div class="panel panel-default">
-         <div class="panel-heading" >
-                <div class="panel-title">
-                  <div class="form-group" ng-class="{'has-error' : nodes.urinode3.$invalid}">
-                    <label>Node 3: </label>
-                    <span class="glyphicon" ng-class="{'glyphicon glyphicon-ok' : node3Rdo.value.numberOfEntries != null, 'glyphicon glyphicon-remove' : node3Rdo.value.numberOfEntries == null }"> </span>			  			             
-                    <input autofocus="autofocus" type="text" name="urinode3" class="form-control" id="title" placeholder="http://localhost:8980" ng-model="urinode3" ng-init="urinode3='http://localhost:8980'" required ng-minlength="2" ng-maxlength="40" >
-                    <p class="help-block" ng-show="urinode3.$error.minlength">Name must be at least 2 characters long.</p>                  
-  				 </div>	
-                </div>
-         </div>
-         <div class="panel-body" ng-if="node3Rdo.value.numberOfEntries != null">                                                      	  		                 		
-                  <b>Entries: {{node3Rdo.value.numberOfEntries}}</b> Stores: {{node3Rdo.value.stores}} Evictions: {{node3Rdo.value.evictions}} Hits: {{node3Rdo.value.hits}}                                 
-         </div>
-       </div>
-    </div>   
-  </form>
-</div>
-<h2>CRUD of Tasks 
-   <a class="btn btn-primary pull-right" href="#/create">New</a>
-   <a class="btn btn-primary pull-right" href="#/load">Load</a>    
-   <a class="btn btn-primary pull-right" href="#/remove">Remove all</a>
+
+<h2>Tasks list 
    <a class="btn btn-primary pull-right" href="#/search">Search</a>
-   <button type="submit" class="btn btn-primary pull-right" ng-click="getNode1Entries();"> Refresh Nodes</button>                         
-   </h2>
+   <a class="btn btn-primary pull-right" href="#/remove">Remove all</a>
+   <a class="btn btn-primary pull-right" href="#/load">Load</a>
+   <a class="btn btn-primary pull-right" href="#/create">New</a>
+       
+   
+   
+                   
+</h2>
 
 
 <table class="table table-hover">
     <tr>
+        <th>
+            Id
+        </th>
         <th>
             Title
         </th>
@@ -74,12 +26,17 @@
             Completed On
         </th>
         <th>Done</th>
+
     </tr>
     <tr class="success-{{task.done}}" ng-repeat="task in tasks track by $index">
         <td> 
+            {{task.id}}
+        </td>
+
+        <td> 
             {{task.title}}
         </td>
-        <td>
+             <td>
             {{task.createdOn |date:'medium'}}
         </td>
         <td>
@@ -88,6 +45,7 @@
         <td>
             <input type="checkbox" ng-change="taskStatusChanged(task)" ng-value="task.done" ng-model="task.done">
         </td>
+    
     </tr>
 </table>
         

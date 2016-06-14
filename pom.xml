@@ -4,7 +4,7 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.redhat.jdg.demo</groupId>
-	<artifactId>HotRodDemo</artifactId>
+	<artifactId>jdgdemo</artifactId>
 	<version>1.0.0</version>
 	<packaging>war</packaging>
 	<properties>
@@ -32,7 +32,7 @@
 			<dependency>
 				<groupId>org.infinispan</groupId>
 				<artifactId>infinispan-bom</artifactId>
-				<version>6.3.0.Final-redhat-5</version>
+				<version>8.3.0.ER4-redhat-1</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>

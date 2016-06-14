@@ -1,5 +1,6 @@
 package org.jboss.infinispan.demo;
 
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -31,7 +32,7 @@ import org.infinispan.client.hotrod.configuration.NearCacheMode;
  */
 public class Config {
 
-    private static final String PROTOBUF_DEFINITION_RESOURCE = "/remotequery/task.proto";
+    private static final String PROTOBUF_DEFINITION_RESOURCE = "/task.proto";
 
 	private RemoteCacheManager cacheManager; 
 	
@@ -45,8 +46,7 @@ public class Config {
 	@Produces
 	public RemoteCache<Long, Task> getRemoteCache() throws Exception {
 		ConfigurationBuilder builder = new ConfigurationBuilder();
-		builder.addServers("localhost:11322;localhost:11922;localhost:11522")
-		       .nearCache().mode(NearCacheMode.LAZY).maxEntries(200)
+		builder.addServers("localhost:11222")
 		       .marshaller(new ProtoStreamMarshaller());  // The Protobuf based marshaller is required for query capabilities
 		cacheManager= new RemoteCacheManager(builder.build(), true);
 		registerSchemasAndMarshallers();
@@ -67,7 +67,7 @@ public class Config {
           
 	      // register the schemas with the server too
 	      RemoteCache<String, String> metadataCache = cacheManager.getCache(ProtobufMetadataManagerConstants.PROTOBUF_METADATA_CACHE_NAME);
-	      metadataCache.put(PROTOBUF_DEFINITION_RESOURCE, readResource(PROTOBUF_DEFINITION_RESOURCE));
+	   
 	      String errors = metadataCache.get(ProtobufMetadataManagerConstants.ERRORS_KEY_SUFFIX);
 	      
 	      if (errors != null) {
@@ -75,20 +75,6 @@ public class Config {
 	      }
 	       
 	   }
-	   private String readResource(String resourcePath) throws IOException {
-		      InputStream is = getClass().getResourceAsStream(resourcePath);
-		      try {
-		         final Reader reader = new InputStreamReader(is, "UTF-8");
-		         StringWriter writer = new StringWriter();
-		         char[] buf = new char[1024];
-		         int len;
-		         while ((len = reader.read(buf)) != -1) {
-		            writer.write(buf, 0, len);
-		         }
-		         return writer.toString();
-		      } finally {
-		         is.close();
-		      }
-		   }
+	  
 
 }

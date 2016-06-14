@@ -2,12 +2,16 @@ package org.jboss.infinispan.demo;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import org.infinispan.client.hotrod.RemoteCache;
+import org.infinispan.client.hotrod.Search;
+import org.infinispan.query.dsl.Query;
+import org.infinispan.query.dsl.QueryFactory;
 import org.jboss.infinispan.demo.model.Task;
 
 
@@ -27,7 +31,16 @@ public class TaskService {
 	 * DONE: Run a bulk get operation against the remote cache and retrieve all values 
 	 */
 	public Collection<Task> findAll() {
-		return cache.getBulk().values();
+		
+		  QueryFactory qf = Search.getQueryFactory(cache);
+
+	        Query query1 = qf.from(Task.class)
+	                .not().having("id").eq(-1)
+	                .toBuilder().build();
+
+	        List<Task> list = query1.list();
+	        return list;
+
 	}
 	
 	/**
@@ -44,6 +57,7 @@ public class TaskService {
 		if(task.getCreatedOn()==null) {
 			task.setCreatedOn(new Date());
 		}
+	
 		task.setId(System.nanoTime());
 		cache.putIfAbsent(task.getId(), task);
 	}
